@@ -8,7 +8,6 @@
 body {
     margin: 0;
     padding: 0;
-    color: black;
 }
 
 .page {
@@ -22,7 +21,7 @@ body {
 
 <script lang="ts" setup>
 useHead({
-    title: "Blender Bots",
+    title: "Chess Club",
     meta: [
         {
             name: "description",
