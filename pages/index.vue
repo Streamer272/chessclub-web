@@ -9,11 +9,8 @@
 
 <script lang="ts" setup>
 const router = useRouter()
-const {error, pending} = await useFetch(`${useBackendUrl()}/test`, {
-    headers: {
-        Authorization: useToken()
-    }
-})
+const auth = useAuth()
+const {error, pending} = await useAPIFetch(`/test`, {method: 'GET'})
 
 if (error.value != null) {
     router.push("/login")
