@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout :name="default">
+    <NuxtLayout>
         <div class="page">
             <h1 class="title">404</h1>
             <h3 class="subtitle">Page not found</h3>

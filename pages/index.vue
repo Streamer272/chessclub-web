@@ -1,6 +1,9 @@
 <template>
     <p v-if="pending">Loading...</p>
-    <p v-else>Fetch finished</p>
+    <div v-else>
+        <router-link to="/members">Members</router-link>
+        <router-link to="/meetings">Meetings</router-link>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -9,10 +12,9 @@
 
 <script lang="ts" setup>
 const router = useRouter()
-const auth = useAuth()
-const {error, pending} = await useAPIFetch(`/test`, {method: 'GET'})
-
-if (error.value != null) {
+const pending = ref(true)
+await useAPITestAuth().catch((error) => {
     router.push("/login")
-}
+})
+pending.value = false
 </script>
