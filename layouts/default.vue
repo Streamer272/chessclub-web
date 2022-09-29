@@ -8,6 +8,8 @@
 body {
     margin: 0;
     padding: 0;
+    color: $fg-200;
+    background-color: $bg-100;
 }
 
 .page {
