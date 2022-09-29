@@ -29,7 +29,7 @@ export const useAPIMember = async (id: string) => {
 }
 
 export const useAPIEditMemberRole = async (id: string, dto: UpdateMemberRoleDTO) => {
-    return await useAPIFetch<MemberDTO>(`/member/${id}/role`, {
+    return await useAPIFetch<MemberDTO>(`/member/${id}`, {
         method: "POST",
         body: dto,
     })

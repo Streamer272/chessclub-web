@@ -2,6 +2,7 @@
     <p v-if="pending">Loading...</p>
     <div v-else>
         <router-link to="/members">Members</router-link>
+        <br>
         <router-link to="/meetings">Meetings</router-link>
     </div>
 </template>

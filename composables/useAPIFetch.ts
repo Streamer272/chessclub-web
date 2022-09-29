@@ -23,3 +23,10 @@ export const useAPIFetch = async <T = object>(uri: string, options: Options = {}
         }
     )
 }
+
+export const useAPIErrorHandler = () => {
+    return (error: any) => {
+        const router = useRouter()
+        router.push("/ohmyfuckinggod")
+    }
+}
