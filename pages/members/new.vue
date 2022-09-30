@@ -9,11 +9,10 @@
 </template>
 
 <style lang="scss" scoped>
+@import "assets/scss/mixins";
+
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex(column, true);
     width: fit-content;
 }
 </style>

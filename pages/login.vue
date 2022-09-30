@@ -18,10 +18,11 @@
 
 <style lang="scss" scoped>
 @import "assets/scss/colors";
+@import "assets/scss/fonts";
+@import "assets/scss/mixins";
 
 form {
-    display: flex;
-    flex-direction: column;
+    @include flex(column, false);
     align-items: flex-end;
     width: fit-content;
 
@@ -47,8 +48,8 @@ form {
     }
 
     .title {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: 2.65rem;
+        font-family: "Roboto Mono Bold", $backup-font;
         padding: 0;
         margin: .5rem;
         color: $fg-100;
@@ -70,17 +71,16 @@ form {
         position: relative;
 
         button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flex(row, true);
             position: absolute;
             top: 50%;
             right: 0;
             transform: translate(0, -50%);
             padding: .2rem .25rem;
             border-radius: 5rem;
-            margin: 0;
+            margin: 0 .4rem 0 0;
             border: none;
+            background-color: #ffffff;
 
             img {
                 width: 1rem;

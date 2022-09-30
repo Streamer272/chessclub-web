@@ -10,39 +10,38 @@
 
 <style lang="scss" scoped>
 @import "assets/scss/colors";
+@import "assets/scss/mixins";
+@import "assets/scss/fonts";
 
 .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex(column, true);
     height: 100vh;
 
     .title {
         font-size: 5rem;
+        font-family: "Roboto Mono Bold", $backup-font;
         margin: .25rem;
         padding: 0;
     }
 
     .subtitle {
-        font-size: 2.30rem;
+        font-size: 2.5rem;
+        font-family: "Roboto Mont Semi Bold", $backup-font;
         margin: .25rem;
         padding: 0;
     }
 
     .redirect {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flex(column, true);
         font-size: 1.05rem;
         background: transparent;
         border: none;
         width: fit-content;
         height: fit-content;
-        margin: 1.25rem;
+        margin: .5rem 0;
         padding: .5rem 1rem;
         cursor: pointer;
+        color: $fg-200;
 
         &:after {
             content: "";
@@ -51,7 +50,7 @@
             display: block;
             width: 85%;
             height: 2px;
-            background: #000000;
+            background: $fg-200;
             transition: width 250ms ease-in-out;
         }
 

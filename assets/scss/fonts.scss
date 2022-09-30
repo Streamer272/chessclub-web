@@ -1,0 +1,22 @@
+$fonts: ("Bold", "Bold"),
+    ("BoldItalic", "Bold Italic"),
+    ("ExtraLight", "Extra Light"),
+    ("ExtraLightItalic", "Extra Light Italic"),
+    ("Italic", "Italic"),
+    ("LightItalic", "Light Italic"),
+    ("Medium", "Medium"),
+    ("MediumItalic", "Medium Italic"),
+    ("Regular", "Regular"),
+    ("SemiBold", "Semi Bold"),
+    ("SemiBoldItalic", "Semi Bold Italic"),
+    ("Thin", "Thin"),
+    ("ThinItalic", "Thin Italic");
+
+@each $file, $name in $fonts {
+    @font-face {
+        font-family: "Roboto Mono #{$name}";
+        src: url("../fonts/roboto mono/RobotoMono-#{$file}.ttf");
+    }
+}
+
+$backup-font: sans-serif;

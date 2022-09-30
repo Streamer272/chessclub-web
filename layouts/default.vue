@@ -4,19 +4,19 @@
 
 <style lang="scss">
 @import "assets/scss/colors";
+@import "assets/scss/fonts";
+@import "assets/scss/mixins";
 
 body {
     margin: 0;
     padding: 0;
     color: $fg-200;
     background-color: $bg-100;
+    font-family: "Roboto Mono Regular", $backup-font;
 }
 
 .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex(column, true);
     height: 100vh;
 }
 </style>

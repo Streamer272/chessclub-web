@@ -1,14 +1,25 @@
 <template>
     <p v-if="pending">Loading...</p>
-    <div v-else>
+    <div v-else class="page homepage">
         <router-link to="/members">Members</router-link>
-        <br>
         <router-link to="/meetings">Meetings</router-link>
     </div>
 </template>
 
 <style lang="scss" scoped>
+@import "assets/scss/colors";
+@import "assets/scss/mixins";
 
+.homepage {
+    @include flex(column, true);
+
+    a {
+        color: $fg-200;
+        text-decoration: none;
+        padding: 0;
+        margin: .1rem 0;
+    }
+}
 </style>
 
 <script lang="ts" setup>
