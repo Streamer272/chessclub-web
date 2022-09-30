@@ -48,22 +48,23 @@
 
     .form {
         @include flex(row, true);
-        margin: .75rem 0 .25rem 0;
+        margin: 1rem 0 .25rem 0;
 
         select {
             color: $fg-200;
             background-color: $bg-200;
             border: none;
-            border-radius: .5rem;
+            border-radius: 1rem 0 0 1rem;
             font-size: 1rem;
             padding: .25rem;
+            margin: 0;
         }
 
         button {
             color: $fg-200;
             background-color: $bg-200;
             border: none;
-            border-radius: .5rem;
+            border-radius: 0 1rem 1rem 0;
             padding: .25rem;
             margin: 0 .25rem;
             font-size: 1rem;
@@ -74,10 +75,10 @@
         color: $fg-200;
         background-color: $bg-200;
         border: none;
-        border-radius: .5rem;
-        padding: .25rem;
+        border-radius: 1rem;
+        padding: .25rem .75rem;
         margin: .25rem 0;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
 </style>
@@ -107,6 +108,10 @@ const submit = (event) => {
 }
 
 const deleteMember = () => {
+    const confirmation = confirm("Are you sure you want to delete this member?")
+    if (!confirmation)
+        return
+
     useAPIDeleteMember(id).then(() => {
         router.push("/members")
     })
