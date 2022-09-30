@@ -65,7 +65,7 @@
                 }
 
                 &:nth-child(2) {
-                    min-width: 12rem;
+                    min-width: 14rem;
                 }
 
                 &:nth-child(3) {
