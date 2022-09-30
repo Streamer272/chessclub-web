@@ -7,8 +7,6 @@
                 :construct-path="(member, _) => '/members/' + member.id"
                 create-path="/members/new"
         />
-
-        <Back/>
     </div>
 </template>
 

@@ -1,14 +1,12 @@
 <template>
     <div class="page centered column">
         <form @submit="submit" class="form">
-            <h1>Create new member</h1>
+            <h1>Create a member</h1>
             <input type="text" placeholder="Name" v-model="name" required>
             <input type="email" placeholder="Email" v-model="email" required>
             <input type="number" placeholder="Grade" v-model="grade" required>
             <button type="submit">Create</button>
         </form>
-
-        <Back/>
     </div>
 </template>
 
@@ -72,6 +70,6 @@ const submit = (event) => {
         grade: +grade.value
     }).then(() => {
         router.push("/members")
-    })
+    }).catch(useAPIErrorHandler())
 }
 </script>

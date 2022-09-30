@@ -2,7 +2,7 @@
     <div class="table">
         <table>
             <tr>
-                <th v-for="header in headers">{{ header }}</th>
+                <th v-for="header in headers" :class="'row-' + headers.indexOf(header)">{{ header }}</th>
             </tr>
             <tr v-for="value in values" :key="value.id">
                 <td v-for="header in headers" :class="'row-' + headers.indexOf(header)">

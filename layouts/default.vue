@@ -1,5 +1,6 @@
 <template>
     <slot />
+    <Back v-if="route.fullPath !== '/'" />
 </template>
 
 <style lang="scss">
@@ -35,6 +36,8 @@ body {
 </style>
 
 <script lang="ts" setup>
+const route = useRoute()
+
 useHead({
     title: "Chess Club",
     meta: [

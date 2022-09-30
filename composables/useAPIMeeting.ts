@@ -11,7 +11,7 @@ export interface MeetingDTO {
 }
 
 export interface StartMeetingDTO {
-    date: Date
+    date: string
     location: string
     orderedBy?: string
     startTime: string

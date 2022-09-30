@@ -20,6 +20,10 @@ export const useAPIAllMembers = async () => {
     return await useAPIFetch<MemberDTO[]>("/member")
 }
 
+export const useAPIAdmins = async () => {
+    return await useAPIFetch<MemberDTO[]>("/member/admins")
+}
+
 export const useAPIRoles = async () => {
     return await useAPIFetch<string[]>("/member/roles")
 }

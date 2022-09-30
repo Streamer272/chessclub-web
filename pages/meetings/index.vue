@@ -7,8 +7,6 @@
                 :construct-path="constructPath"
                 create-path="/meetings/new"
         />
-
-        <Back/>
     </div>
 </template>
 

@@ -13,8 +13,6 @@
         </form>
 
         <button @click="deleteMember" class="delete">Delete member</button>
-
-        <Back/>
     </div>
 </template>
 
