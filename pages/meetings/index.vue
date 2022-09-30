@@ -4,7 +4,7 @@
         <DataTable
                 :headers="['Date', 'Location', 'Ordered By', 'Start Time', 'End Time', 'Attendance']"
                 :values="res.data"
-                :construct-path="(meeting) => '/meetings/' + meeting.id"
+                :construct-path="constructPath"
                 create-path="/meetings/new"
         />
 
@@ -44,12 +44,12 @@
 const pending = ref(true)
 const res = await useAPIAllMeetings().catch(useAPIErrorHandler())
 if (res) {
-    const meetings = res.data
-    for (const meeting of meetings) {
+    for (const meeting of res.data) {
         if (!meeting.orderedBy || meeting.orderedBy === "")
             continue
 
         const orderedByRes = await useAPIMember(meeting.orderedBy).catch(useAPIErrorHandler())
+        meeting["orderedById"] = meeting.orderedBy
         if (orderedByRes)
             meeting.orderedBy = orderedByRes.data.name
 
@@ -70,4 +70,16 @@ if (res) {
     }
 }
 pending.value = false
+
+const constructPath = (meeting, header) => {
+    switch (header) {
+        case "orderedBy":
+            if (meeting["orderedById"] && meeting["orderedById"] !== "")
+                return "/members/" + meeting["orderedById"]
+            else
+                return "/meetings/" + meeting.id
+        default:
+            return "/meetings/" + meeting.id
+    }
+}
 </script>

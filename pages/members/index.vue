@@ -4,7 +4,7 @@
         <DataTable
                 :headers="['Name', 'Email', 'Grade', 'Role']"
                 :values="res.data"
-                :construct-path="(member) => '/members/' + member.id"
+                :construct-path="(member, _) => '/members/' + member.id"
                 create-path="/members/new"
         />
 

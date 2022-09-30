@@ -6,7 +6,7 @@
             </tr>
             <tr v-for="value in values" :key="value.id">
                 <td v-for="header in headers" :class="'row-' + headers.indexOf(header)">
-                    <router-link :to="constructPath(value)">{{ value[toCamelCase(header)] }}</router-link>
+                    <router-link :to="constructPath(value, toCamelCase(header))">{{ value[toCamelCase(header)] }}</router-link>
                 </td>
             </tr>
         </table>
