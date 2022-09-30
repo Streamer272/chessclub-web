@@ -22,8 +22,7 @@
 @import "assets/scss/mixins";
 
 form {
-    @include flex(column, false);
-    align-items: flex-end;
+    @include flex(column, true);
     width: fit-content;
 
     input {
@@ -58,7 +57,7 @@ form {
     }
 
     .error {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         font-weight: 700;
         padding: 0;
         margin: .5rem;

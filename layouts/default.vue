@@ -8,6 +8,9 @@
 @import "assets/scss/mixins";
 
 body {
+    position: fixed;
+    top: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     color: $fg-200;
@@ -16,8 +19,18 @@ body {
 }
 
 .page {
-    @include flex(column, true);
+    width: 100vw;
     height: 100vh;
+    padding: 0;
+    margin: 0;
+
+    &.centered {
+        @include flex(row, true);
+    }
+
+    &.column {
+        flex-direction: column;
+    }
 }
 </style>
 

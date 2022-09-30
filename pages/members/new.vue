@@ -6,6 +6,8 @@
         <input type="number" placeholder="Grade" v-model="grade" required>
         <button type="submit">Create</button>
     </form>
+
+    <Back />
 </template>
 
 <style lang="scss" scoped>

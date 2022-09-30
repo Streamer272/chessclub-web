@@ -18,8 +18,8 @@
         <br>
 
         <a v-bind:href="`mailto:${res.data.email}`" target="_blank">Send email</a>
-        <br>
-        <router-link to="/members">Back</router-link>
+
+        <Back />
     </div>
 </template>
 
@@ -32,7 +32,7 @@ const route = useRoute()
 const router = useRouter()
 const pending = ref(true)
 const role = ref("")
-let id;
+let id
 if (typeof route.params.id === "string")
     id = route.params.id
 else

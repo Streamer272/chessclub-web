@@ -3,7 +3,7 @@
         <div class="page">
             <h1 class="title">404</h1>
             <h3 class="subtitle">Page not found</h3>
-            <button @click="redirect" class="redirect">Go back home</button>
+            <router-link to="/" class="redirect">Go back home</router-link>
         </div>
     </NuxtLayout>
 </template>
@@ -42,10 +42,11 @@
         padding: .5rem 1rem;
         cursor: pointer;
         color: $fg-200;
+        text-decoration: none;
 
         &:after {
             content: "";
-            margin: .25rem 0 0 0;
+            margin: .15rem 0 0 0;
             padding: 0;
             display: block;
             width: 85%;
@@ -64,12 +65,6 @@
 </style>
 
 <script lang="ts" setup>
-const router = useRouter()
-
-const redirect = () => {
-    router.push('/')
-}
-
 definePageMeta({
     layout: 'default',
 })
