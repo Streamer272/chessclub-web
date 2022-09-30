@@ -5,7 +5,7 @@
             <h4 v-if="showError" class="error">Invalid username or password</h4>
             <input type="text" placeholder="Username" required v-model="username">
             <div class="password-div">
-                <input v-bind:type="showPassword ? 'text' : 'password'" placeholder="Password" required v-model="password">
+                <input :type="showPassword ? 'text' : 'password'" placeholder="Password" required v-model="password">
                 <button type="button" @click="toggleShowPassword">
                     <img v-if="showPassword" src="/hide.png" alt="Hide password">
                     <img v-else src="/show.png" alt="Show password">

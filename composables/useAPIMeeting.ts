@@ -2,12 +2,12 @@ import {GenericResponse} from "~/composables/useAPIFetch";
 
 export interface MeetingDTO {
     id: string
-    date: Date
+    date: string
     location: string
     orderedBy?: string
     startTime: string
     endTime: string
-    attendance: Map<string, boolean>
+    attendance: string
 }
 
 export interface StartMeetingDTO {

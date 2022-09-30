@@ -1,0 +1,73 @@
+<template>
+    <p v-if="pending">Loading...</p>
+    <div v-else class="page meeting-page">
+        <DataTable
+                :headers="['Date', 'Location', 'Ordered By', 'Start Time', 'End Time', 'Attendance']"
+                :values="res.data"
+                :construct-path="(meeting) => '/meetings/' + meeting.id"
+                create-path="/meetings/new"
+        />
+
+        <Back/>
+    </div>
+</template>
+
+<style lang="scss">
+.meeting-page {
+    .row-0 {
+        width: 8rem;
+    }
+
+    .row-1 {
+        width: 10rem;
+    }
+
+    .row-2 {
+        width: 10rem;
+    }
+
+    .row-3 {
+        width: 8rem;
+    }
+
+    .row-4 {
+        width: 8rem;
+    }
+
+    .row-5 {
+        width: 15rem;
+    }
+}
+</style>
+
+<script lang="ts" setup>
+const pending = ref(true)
+const res = await useAPIAllMeetings().catch(useAPIErrorHandler())
+if (res) {
+    const meetings = res.data
+    for (const meeting of meetings) {
+        if (!meeting.orderedBy || meeting.orderedBy === "")
+            continue
+
+        const orderedByRes = await useAPIMember(meeting.orderedBy).catch(useAPIErrorHandler())
+        if (orderedByRes)
+            meeting.orderedBy = orderedByRes.data.name
+
+        const meetingAttendance = JSON.parse(meeting.attendance)
+        for (const attendance in meetingAttendance) {
+            console.log(attendance)
+            const attendanceRes = await useAPIMember(attendance).catch(useAPIErrorHandler())
+            if (attendanceRes) {
+                const present = meetingAttendance[attendance]
+                delete meetingAttendance[attendance]
+                meetingAttendance[attendanceRes.data.name] = present
+            }
+        }
+        let attendanceString = ""
+        for (const attendance in meetingAttendance)
+            attendanceString += attendance + ": " + meetingAttendance[attendance] + "\n"
+        meeting.attendance = attendanceString
+    }
+}
+pending.value = false
+</script>

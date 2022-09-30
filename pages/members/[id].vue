@@ -9,7 +9,7 @@
         </p>
         <form @submit="submit">
             <select name="role" id="member-role" v-model="role">
-                <option v-for="role in roles.data" :value="role" v-bind:selected="role === res.data.role">{{ role }}</option>
+                <option v-for="role in roles.data" :value="role" :selected="role === res.data.role">{{ role }}</option>
             </select>
             <button type="submit">Change role</button>
         </form>
@@ -17,7 +17,7 @@
         <button @click="deleteMember">Delete member</button>
         <br>
 
-        <a v-bind:href="`mailto:${res.data.email}`" target="_blank">Send email</a>
+        <a :href="`mailto:${res.data.email}`" target="_blank">Send email</a>
 
         <Back />
     </div>

@@ -1,5 +1,5 @@
 <template>
-    <router-link v-bind:to="to" class="back">
+    <router-link :to="to" class="back">
         <img src="/arrow-left.png" alt="Back" />
     </router-link>
 </template>
