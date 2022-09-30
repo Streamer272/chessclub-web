@@ -2,6 +2,10 @@
 
 import axios from "axios";
 
+export interface GenericResponse {
+    response: string
+}
+
 interface Options {
     method?: string
     body?: object
