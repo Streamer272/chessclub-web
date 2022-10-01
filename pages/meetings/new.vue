@@ -1,5 +1,5 @@
 <template>
-    <p v-if="pending">Loading...</p>
+    <Loading v-if="pending" />
     <div v-else class="page centered column meeting-new-page">
         <form class="form" @submit="submit">
             <h1>Create a meeting</h1>

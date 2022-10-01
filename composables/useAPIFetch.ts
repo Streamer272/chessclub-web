@@ -31,6 +31,8 @@ export const useAPIFetch = async <T = object>(uri: string, options: Options = {}
 export const useAPIErrorHandler = () => {
     return (error: any) => {
         const router = useRouter()
+        if (error.status === 404)
+            router.push("/404")
         router.push("/ohmyfuckinggod")
     }
 }

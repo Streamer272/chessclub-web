@@ -6,7 +6,10 @@
             </tr>
             <tr v-for="value in values" :key="value.id">
                 <td v-for="header in headers" :class="'row-' + headers.indexOf(header)">
-                    <router-link :to="constructPath(value, toCamelCase(header))">{{ value[toCamelCase(header)] }}</router-link>
+                    <router-link :to="constructPath(value, toCamelCase(header))">{{
+                            value[toCamelCase(header)]
+                        }}
+                    </router-link>
                 </td>
             </tr>
         </table>
@@ -34,6 +37,9 @@
         border: none;
 
         tr {
+            padding: 0;
+            margin: 0;
+
             th {
                 font-family: "Roboto Mono Semi Bold", $backup-font;
                 font-size: 1.05rem;
@@ -42,6 +48,10 @@
             td {
                 font-family: "Roboto Mono Regular", $backup-font;
                 text-align: center;
+                overflow: auto;
+                padding: .1rem;
+                margin: 0;
+                height: 1rem;
             }
 
             &:nth-child(odd):not(:first-child) {
@@ -98,7 +108,7 @@ defineProps({
 })
 
 const toCamelCase = (str) => {
-    return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
         if (+match === 0) return "";
         return index === 0 ? match.toLowerCase() : match.toUpperCase();
     });

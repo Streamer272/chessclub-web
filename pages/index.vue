@@ -1,5 +1,5 @@
 <template>
-    <p v-if="pending">Loading...</p>
+    <Loading v-if="pending" />
     <div v-else class="page homepage">
         <router-link to="/members">Members</router-link>
         <router-link to="/meetings">Meetings</router-link>

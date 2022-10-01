@@ -1,5 +1,5 @@
 <template>
-    <p v-if="pending">Loading...</p>
+    <Loading v-if="pending" />
     <div v-else class="page meeting-page">
         <DataTable
                 :headers="['Date', 'Location', 'Ordered By', 'Start Time', 'End Time', 'Attendance']"
@@ -53,7 +53,6 @@ if (res) {
 
         const meetingAttendance = JSON.parse(meeting.attendance)
         for (const attendance in meetingAttendance) {
-            console.log(attendance)
             const attendanceRes = await useAPIMember(attendance).catch(useAPIErrorHandler())
             if (attendanceRes) {
                 const present = meetingAttendance[attendance]
@@ -64,7 +63,7 @@ if (res) {
         let attendanceString = ""
         for (const attendance in meetingAttendance)
             attendanceString += attendance + ": " + meetingAttendance[attendance] + "\n"
-        meeting.attendance = attendanceString
+        meeting.attendance = attendanceString.slice(0, 64)
     }
 }
 pending.value = false

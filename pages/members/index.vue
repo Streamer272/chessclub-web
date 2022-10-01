@@ -1,5 +1,5 @@
 <template>
-    <p v-if="pending">Loading...</p>
+    <Loading v-if="pending" />
     <div v-else class="page member-page">
         <DataTable
                 :headers="['Name', 'Email', 'Grade', 'Role']"

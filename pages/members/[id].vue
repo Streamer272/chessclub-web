@@ -1,5 +1,5 @@
 <template>
-    <p v-if="pending">Loading...</p>
+    <Loading v-if="pending" />
     <div v-else class="page centered column member-id-page">
         <h4 class="name">{{ res.data.name }}</h4>
         <p class="role">({{ res.data.role }})</p>
@@ -112,6 +112,6 @@ const deleteMember = () => {
 
     useAPIDeleteMember(id).then(() => {
         router.push("/members")
-    })
+    }).catch(useAPIErrorHandler())
 }
 </script>
