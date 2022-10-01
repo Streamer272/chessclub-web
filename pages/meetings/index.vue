@@ -43,27 +43,11 @@ const pending = ref(true)
 const res = await useAPIAllMeetings().catch(useAPIErrorHandler())
 if (res) {
     for (const meeting of res.data) {
-        if (!meeting.orderedBy || meeting.orderedBy === "")
-            continue
+        const orderedByRes = await useMeetingOrderedBy(meeting)
+        meeting.orderedBy = orderedByRes.name
+        meeting["orderedById"] = orderedByRes.id
 
-        const orderedByRes = await useAPIMember(meeting.orderedBy).catch(useAPIErrorHandler())
-        meeting["orderedById"] = meeting.orderedBy
-        if (orderedByRes)
-            meeting.orderedBy = orderedByRes.data.name
-
-        const meetingAttendance = JSON.parse(meeting.attendance)
-        for (const attendance in meetingAttendance) {
-            const attendanceRes = await useAPIMember(attendance).catch(useAPIErrorHandler())
-            if (attendanceRes) {
-                const present = meetingAttendance[attendance]
-                delete meetingAttendance[attendance]
-                meetingAttendance[attendanceRes.data.name] = present
-            }
-        }
-        let attendanceString = ""
-        for (const attendance in meetingAttendance)
-            attendanceString += attendance + ": " + meetingAttendance[attendance] + "\n"
-        meeting.attendance = attendanceString.slice(0, 64)
+        meeting.attendance = (await useMeetingAttendance(meeting)).slice(0, 64)
     }
 }
 pending.value = false
