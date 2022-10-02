@@ -104,8 +104,10 @@ const toggleShowPassword = () => showPassword.value = !showPassword.value
 
 const submit = (e: Event) => {
     e.preventDefault()
+    if (!username.value || !password.value)
+        return
     auth.value = `${username.value}:${password.value}`
-    useAPITestAuth().then((data) => {
+    useAPITestAuth({username: username.value, password: password.value}).then((data) => {
         router.push("/")
     }).catch((error) => {
         showError.value = true

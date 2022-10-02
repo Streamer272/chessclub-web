@@ -1,6 +1,8 @@
 <template>
-    <slot />
-    <Back v-if="route.fullPath !== '/'" />
+    <div>
+        <slot/>
+        <Back v-if="route.fullPath !== '/'"/>
+    </div>
 </template>
 
 <style lang="scss">

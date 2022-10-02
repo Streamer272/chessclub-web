@@ -34,7 +34,9 @@
 
 <script lang="ts" setup>
 const route = useRoute()
-const fullPath = route.fullPath.split('/')
-fullPath.pop()
-const to = fullPath.length === 1 ? '/' : fullPath.join('/')
+const to = computed(() => {
+    const path = route.fullPath.split('/')
+    path.pop()
+    return path.length === 1 ? '/' : path.join('/')
+})
 </script>

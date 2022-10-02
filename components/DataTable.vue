@@ -1,6 +1,7 @@
 <template>
     <div class="table">
         <table>
+            <tbody>
             <tr>
                 <th v-for="header in headers" :class="'row-' + headers.indexOf(header)">{{ header }}</th>
             </tr>
@@ -12,6 +13,7 @@
                     </router-link>
                 </td>
             </tr>
+            </tbody>
         </table>
 
         <router-link v-if="createPath" :to="createPath" class="add">+</router-link>

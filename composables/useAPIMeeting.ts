@@ -1,5 +1,3 @@
-import {GenericResponse} from "~/composables/useAPIFetch";
-
 export interface MeetingDTO {
     id: string
     date: string

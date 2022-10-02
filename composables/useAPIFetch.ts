@@ -9,6 +9,7 @@ export interface GenericResponse {
 interface Options {
     method?: string
     body?: object
+    auth?: Auth
 }
 
 export const useAPIFetch = async <T = object>(uri: string, options: Options = {}) => {
@@ -17,8 +18,8 @@ export const useAPIFetch = async <T = object>(uri: string, options: Options = {}
             method: options.method ?? "GET",
             url: `http://localhost:8080${uri}`,
             auth: {
-                username: auth.value.split(':')[0],
-                password: auth.value.split(':')[1]
+                username: options.auth ? options.auth.username : auth.value.split(':')[0],
+                password: options.auth ? options.auth.password : auth.value.split(':')[1]
             },
             headers: {
                 "Content-Type": "application/json"
@@ -31,8 +32,8 @@ export const useAPIFetch = async <T = object>(uri: string, options: Options = {}
 export const useAPIErrorHandler = () => {
     return (error: any) => {
         const router = useRouter()
-        if (error.status === 404)
-            router.push("/404")
-        router.push("/ohmyfuckinggod")
+        if (error?.status === 404)
+            router.push('/404')
+        router.push('/ohmyfuckinggod')
     }
 }

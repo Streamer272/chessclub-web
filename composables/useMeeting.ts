@@ -1,5 +1,3 @@
-import {MemberDTO} from "~/composables/useAPIMember";
-
 export interface MeetingAttendance {
     member: MemberDTO,
     present: boolean
