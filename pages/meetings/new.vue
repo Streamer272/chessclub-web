@@ -72,8 +72,9 @@ const orderedBy = ref("")
 const startTime = ref(`${dateObject.getHours()}:${dateObject.getMinutes()}`)
 
 const res = await useAPIAdmins().catch(useAPIErrorHandler())
-if (res)
+if (res) {
     orderedBy.value = res.data.find((admin) => admin.role.toLowerCase() === "president")?.name ?? ""
+}
 pending.value = false
 
 const submit = (event) => {

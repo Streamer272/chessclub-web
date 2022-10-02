@@ -11,14 +11,20 @@
         </p>
 
         <p class="start-time">Started at: {{ meeting.startTime }}</p>
-        <p class="end-time">Ended at: {{ meeting.endTime }}</p>
-        <p class="duration">Duration: {{ duration }}</p>
+        <p class="end-time" v-if="res.data.endTime">Ended at: {{ meeting.endTime }}</p>
+        <p class="end-time" v-else>In progress</p>
+        <p class="duration" v-if="res.data.endTime">Duration: {{ duration }}</p>
         <p class="attendance">
             Attendance:<br>
             <span v-for="member in meeting.attendance.split('\n')">{{ member }}<button
                     @click="toggleAttendance(member)">Toggle</button><br></span>
         </p>
         <p class="present-count">Present: {{ presentCount }}</p>
+
+        <form class="end-meeting" v-if="!res.data.endTime" @submit="submit">
+            <input type="time" v-model="endTime">
+            <button type="submit">End meeting</button>
+        </form>
     </div>
 </template>
 
@@ -104,6 +110,33 @@
     padding: 0;
     margin: .2rem 0;
 }
+
+.end-meeting {
+    @include flex(row, true);
+    margin: 1.5rem 0 0 0;
+
+    input {
+        font-family: "Roboto Mono Light", $backup-font;
+        font-size: 1.25rem;
+        padding: .14rem .5rem;
+        margin: 0 .1rem;
+        border: none;
+        border-radius: 1rem 0 0 1rem;
+        color: $fg-200;
+        background-color: $bg-200;
+    }
+
+    button {
+        font-family: "Roboto Mono Light", $backup-font;
+        font-size: 1.25rem;
+        padding: .25rem .5rem;
+        margin: 0 .1rem;
+        border: none;
+        border-radius: 0 1rem 1rem 0;
+        color: $fg-100;
+        background-color: $bg-200;
+    }
+}
 </style>
 
 <script lang="ts" setup>
@@ -114,6 +147,7 @@ const originalAttendance = ref(null)
 const date = ref(null)
 const duration = ref("0:00")
 const presentCount = ref(0)
+const endTime = ref(`${new Date().getHours()}:${new Date().getMinutes()}`)
 let id
 if (typeof route.params.id === "string")
     id = route.params.id
@@ -129,6 +163,7 @@ if (res) {
     const hours = Math.floor(durationInMs / 1000 / 60 / 60)
     const minutes = Math.floor(durationInMs / 1000 / 60) - hours * 60
     duration.value = `${hours} hour${hours === 1 ? '' : 's'}, ${minutes} minute${minutes === 1 ? '' : 's'}`
+    res.data.endTime = res.data.endTime === "null" ? null : res.data.endTime
 
     const orderedByRes = await useMeetingOrderedBy(meeting)
     meeting.orderedBy = orderedByRes.name
@@ -155,7 +190,7 @@ const toggleAttendance = async (memberString: string) => {
     })
 }
 
-const endMeeting = async () => {
+const submit = async () => {
     const date = new Date()
     useAPIEndMeeting(id, {
         endTime: `${date.getHours()}:${date.getMinutes()}`
