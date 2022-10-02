@@ -15,7 +15,7 @@ $fonts: ("Bold", "Bold"),
 @each $file, $name in $fonts {
     @font-face {
         font-family: "Roboto Mono #{$name}";
-        src: url("assets/fonts/roboto mono/RobotoMono-#{$file}.ttf");
+        src: url("assets/fonts/roboto-mono/RobotoMono-#{$file}.ttf");
     }
 }
 
