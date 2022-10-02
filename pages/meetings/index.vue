@@ -43,11 +43,15 @@ const pending = ref(true)
 const res = await useAPIAllMeetings().catch(useAPIErrorHandler())
 if (res) {
     for (const meeting of res.data) {
+        const date = new Date(meeting.date)
+        meeting.date = date.toLocaleDateString()
+
         const orderedByRes = await useMeetingOrderedBy(meeting)
         meeting.orderedBy = orderedByRes.name
         meeting["orderedById"] = orderedByRes.id
 
-        meeting.attendance = (await useMeetingAttendance(meeting)).slice(0, 64)
+        const attendanceRes = await useMeetingAttendance(meeting)
+        meeting.attendance = attendanceRes.string.slice(0, 64)
     }
 }
 pending.value = false

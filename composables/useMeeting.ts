@@ -1,3 +1,10 @@
+import {MemberDTO} from "~/composables/useAPIMember";
+
+export interface MeetingAttendance {
+    member: MemberDTO,
+    present: boolean
+}
+
 export const useMeetingOrderedBy = async (meeting) => {
     if (!meeting.orderedBy || meeting.orderedBy === "")
         return {
@@ -20,16 +27,25 @@ export const useMeetingOrderedBy = async (meeting) => {
 
 export const useMeetingAttendance = async (meeting) => {
     const meetingAttendance = JSON.parse(meeting.attendance)
-    for (const attendance in meetingAttendance) {
-        const attendanceRes = await useAPIMember(attendance).catch(useAPIErrorHandler())
+    const result: MeetingAttendance[] = []
+    for (const attendanceMemberId in meetingAttendance) {
+        const attendanceRes = await useAPIMember(attendanceMemberId).catch(useAPIErrorHandler())
         if (attendanceRes) {
-            const present = meetingAttendance[attendance]
-            delete meetingAttendance[attendance]
-            meetingAttendance[attendanceRes.data.name] = present
+            const present = meetingAttendance[attendanceMemberId]
+            delete meetingAttendance[attendanceMemberId]
+            result.push({
+                member: attendanceRes.data,
+                present: present
+            })
         }
     }
+
     let attendanceString = []
-    for (const attendance in meetingAttendance)
-        attendanceString.push(attendance + ": " + (meetingAttendance[attendance] ? "Present" : "Absent"))
-    return attendanceString.join("\n")
+    for (const attendance of result)
+        attendanceString.push(`${attendance.member.name}: ${(attendance.present ? "Present" : "Absent")}`)
+
+    return {
+        json: result,
+        string: attendanceString.join("\n")
+    }
 }
