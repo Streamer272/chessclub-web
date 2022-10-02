@@ -28,8 +28,8 @@ export const useMeetingAttendance = async (meeting) => {
             meetingAttendance[attendanceRes.data.name] = present
         }
     }
-    let attendanceString = ""
+    let attendanceString = []
     for (const attendance in meetingAttendance)
-        attendanceString += attendance + ": " + meetingAttendance[attendance] + "\n"
-    return attendanceString
+        attendanceString.push(attendance + ": " + (meetingAttendance[attendance] ? "Present" : "Absent"))
+    return attendanceString.join("\n")
 }
