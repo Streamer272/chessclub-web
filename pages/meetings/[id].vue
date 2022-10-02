@@ -193,7 +193,7 @@ const toggleAttendance = async (memberString: string) => {
 const submit = async () => {
     const date = new Date()
     useAPIEndMeeting(id, {
-        endTime: `${date.getHours()}:${date.getMinutes()}`
+        endTime: endTime.value
     }).then(() => {
         router.go(0)
     }).catch(useAPIErrorHandler())

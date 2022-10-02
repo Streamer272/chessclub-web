@@ -54,8 +54,8 @@
             border: none;
             border-radius: 1rem 0 0 1rem;
             font-size: 1rem;
-            padding: .25rem;
-            margin: 0;
+            padding: .20rem .25rem;
+            margin: 0 .1rem;
         }
 
         button {
@@ -64,7 +64,7 @@
             border: none;
             border-radius: 0 1rem 1rem 0;
             padding: .25rem;
-            margin: 0 .25rem;
+            margin: 0 .1rem;
             font-size: 1rem;
         }
     }
