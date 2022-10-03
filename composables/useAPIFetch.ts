@@ -1,5 +1,3 @@
-// TODO: change url in production
-
 import axios from "axios";
 
 export interface GenericResponse {
@@ -16,7 +14,7 @@ export const useAPIFetch = async <T = object>(uri: string, options: Options = {}
     const auth = useAuth()
     return await axios.request<T>({
             method: options.method ?? "GET",
-            url: `http://localhost:8080${uri}`,
+            url: `https://api.chessclub.streamer272.com${uri}`,
             auth: {
                 username: options.auth ? options.auth.username : auth.value.split(':')[0],
                 password: options.auth ? options.auth.password : auth.value.split(':')[1]
