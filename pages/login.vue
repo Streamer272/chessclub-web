@@ -7,8 +7,8 @@
             <div class="password-div">
                 <input :type="showPassword ? 'text' : 'password'" placeholder="Password" required v-model="password">
                 <button type="button" @click="toggleShowPassword">
-                    <img v-if="showPassword" src="/hide.png" alt="Hide password">
-                    <img v-else src="/show.png" alt="Show password">
+                    <img v-if="showPassword" src="/images/hide.png" alt="Hide password">
+                    <img v-else src="/images/show.png" alt="Show password">
                 </button>
             </div>
             <button type="submit">Log in</button>

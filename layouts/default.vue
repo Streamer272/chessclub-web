@@ -2,6 +2,9 @@
     <div>
         <slot/>
         <Back v-if="route.fullPath !== '/'"/>
+        <ClientOnly>
+            <ServiceWorkerRegister/>
+        </ClientOnly>
     </div>
 </template>
 
@@ -54,6 +57,12 @@ useHead({
         {
             name: "viewport",
             content: "width=device-width, initial-scale=1.0"
+        }
+    ],
+    link: [
+        {
+            rel: "manifest",
+            href: "/manifest.json"
         }
     ]
 })

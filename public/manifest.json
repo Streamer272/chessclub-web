@@ -1,0 +1,22 @@
+{
+    "name": "Chess Club Web",
+    "short_name": "Chess Club Web",
+    "description": "Website for the Del Mar Chess Club",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "256x256",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#343a40",
+    "lang": "en"
+}
