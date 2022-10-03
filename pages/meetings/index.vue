@@ -3,7 +3,7 @@
     <div v-else class="page meeting-page">
         <DataTable
                 :headers="['Date', 'Location', 'Ordered By', 'Start Time', 'End Time', 'Attendance']"
-                :values="res.data"
+                :values="meetings"
                 :construct-path="constructPath"
                 create-path="/meetings/new"
         />
@@ -40,6 +40,7 @@
 
 <script lang="ts" setup>
 const pending = ref(true)
+const meetings = ref(null)
 const res = await useAPIAllMeetings().catch(useAPIErrorHandler())
 if (res) {
     for (const meeting of res.data) {
@@ -53,6 +54,7 @@ if (res) {
         const attendanceRes = await useMeetingAttendance(meeting)
         meeting.attendance = attendanceRes.string.slice(0, 64)
     }
+    meetings.value = res.data
 }
 pending.value = false
 

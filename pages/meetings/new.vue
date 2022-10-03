@@ -6,7 +6,7 @@
             <input type="date" placeholder="Date" v-model="date" required>
             <input type="text" placeholder="Location" v-model="location" required>
             <select v-model="orderedBy">
-                <option v-for="admin in res.data">{{ admin.name }}</option>
+                <option v-for="admin in admins">{{ admin.name }}</option>
             </select>
             <input type="time" placeholder="Start Time" v-model="startTime" required>
             <button type="submit">Start</button>
@@ -66,6 +66,7 @@
 const router = useRouter()
 const dateObject = new Date()
 const pending = ref(true)
+const admins = ref(null)
 const date = ref(`${dateObject.toISOString().split('T')[0]}`)
 const location = ref("Room 1")
 const orderedBy = ref("")
@@ -74,6 +75,7 @@ const startTime = ref(`${dateObject.getHours()}:${dateObject.getMinutes()}`)
 const res = await useAPIAdmins().catch(useAPIErrorHandler())
 if (res) {
     orderedBy.value = res.data.find((admin) => admin.role.toLowerCase() === "president")?.name ?? ""
+    admins.value = res.data
 }
 pending.value = false
 
