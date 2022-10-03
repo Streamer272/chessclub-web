@@ -1,8 +1,8 @@
 self.addEventListener('install', (event) => {
     console.log("[SW] Installed")
     event.waitUntil((async () => {
-        const cache = await caches.open("ccw-v1");
-        console.log("[SW] Caching all");
+        const cache = await caches.open("ccw-v1")
+        console.log("[SW] Caching all")
         await cache.addAll([
             "/",
             "/login",
@@ -13,13 +13,10 @@ self.addEventListener('install', (event) => {
             "/meetings/1",
             "/meetings/new",
             "/ohmyfuckinggod",
-            "/images/arrow-left.png",
-            "/images/hide.png",
-            "/images/show.png",
-        ]);
-    })());
+        ])
+    })())
 })
 
 self.addEventListener('fetch', (event) => {
-    console.log(`[SW] Fetching ${event.request.url}`)
+    console.log("[SW] Fetching")
 })

@@ -29,7 +29,6 @@
     margin: 1rem;
     border: 1px solid $bg-200;
     border-radius: 1rem;
-    overflow: hidden;
     width: fit-content;
 
     table {

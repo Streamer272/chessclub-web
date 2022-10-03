@@ -14,9 +14,8 @@
 @import "assets/scss/mixins";
 
 body {
-    position: fixed;
-    top: 0;
-    left: 0;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     color: $fg-200;
@@ -29,6 +28,7 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
+    overflow: auto;
 
     &.centered {
         @include flex(row, true);
@@ -63,6 +63,10 @@ useHead({
         {
             rel: "manifest",
             href: "/manifest.json"
+        },
+        {
+            rel: "apple-touch-icon",
+            href: "/images/icon-512x512.png"
         }
     ]
 })
