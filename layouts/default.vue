@@ -45,7 +45,15 @@ useHead({
     meta: [
         {
             name: "description",
-            content: "Blender Bots is a club for students to learn about robotics and programming."
+            content: "Administrator website for the Del Mar Chess Club"
+        },
+        {
+            name: "author",
+            content: "Daniel Svitan"
+        },
+        {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0"
         }
     ]
 })
